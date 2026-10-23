@@ -196,20 +196,17 @@ button { cursor: pointer; }
 /* ============ Product dialog ============ */
 .pd {
   padding: 0; border: 0; color: var(--ink); background: var(--bg);
-  width: 100%; max-width: 100%; max-height: 92dvh;
+  width: 100%; max-width: 100%; max-height: 92vh; max-height: 92dvh;
   margin: auto 0 0; border-radius: var(--radius-md) var(--radius-md) 0 0;
   overflow: hidden; box-shadow: var(--shadow);
-  opacity: 0; transform: translateY(24px);
-  transition: opacity .3s var(--ease), transform .35s var(--ease), overlay .35s allow-discrete, display .35s allow-discrete;
 }
-.pd[open] { display: flex; flex-direction: column; opacity: 1; transform: none; }
-@starting-style { .pd[open] { opacity: 0; transform: translateY(24px); } }
+.pd[open] { display: flex; flex-direction: column; animation: pd-in .35s var(--ease) both; }
 .pd::backdrop {
   background: var(--overlay); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
-  opacity: 0; transition: opacity .3s var(--ease), overlay .3s allow-discrete, display .3s allow-discrete;
 }
-.pd[open]::backdrop { opacity: 1; }
-@starting-style { .pd[open]::backdrop { opacity: 0; } }
+.pd[open]::backdrop { animation: fade-in-bd .3s var(--ease) both; }
+@keyframes pd-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes fade-in-bd { from { opacity: 0; } to { opacity: 1; } }
 
 .pd-close {
   position: absolute; top: var(--s-3); right: var(--s-3); z-index: 2;
@@ -220,8 +217,8 @@ button { cursor: pointer; }
 }
 .pd-close:hover { border-color: var(--ink); }
 
-.pd-scroll { overflow-y: auto; overscroll-behavior: contain; flex: 1; min-height: 0; }
-.pd-media { height: 42dvh; background: var(--surface-2); }
+.pd-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; flex: 1 1 auto; min-height: 0; }
+.pd-media { height: 42vh; height: 42dvh; background: var(--surface-2); }
 .pd-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 .pd-info { padding: var(--s-5) var(--gutter) var(--s-4); }
 .pd-name { font-family: var(--font-display); font-weight: 500; font-size: 2rem; line-height: 1.1; margin-top: var(--s-1); }
@@ -272,11 +269,9 @@ button { cursor: pointer; }
 @media (min-width: 860px) {
 
   .pd {
-    width: min(980px, calc(100% - 48px)); height: min(86dvh, 720px); max-height: none;
+    width: min(980px, calc(100% - 48px)); height: min(86vh, 720px); height: min(86dvh, 720px); max-height: none;
     margin: auto; border-radius: var(--radius-md);
-    transform: translateY(16px);
   }
-  @starting-style { .pd[open] { transform: translateY(16px); } }
   .pd-scroll { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
   .pd-scroll { grid-template-rows: minmax(0, 1fr); }
   .pd-media { height: 100%; position: relative; overflow: hidden; }
