@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glow Up · Showroom</title>
+  <meta name="description" content="Showroom de indumentaria: vestidos, tops, pantalones, abrigos y accesorios seleccionados.">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:title" content="Glow Up · Showroom">
+  <meta property="og:description" content="Showroom de indumentaria: vestidos, tops, pantalones, abrigos y accesorios seleccionados.">
+  <meta property="og:image" content="https://matiaspc.github.io/glow-up-demo/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://matiaspc.github.io/glow-up-demo/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/products.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Glow Up Showroom, inicio">
+        <span class="brand-name">GLOW UP</span>
+        <span class="brand-sub">SHOWROOM</span>
+      </a>
+      <nav aria-label="Principal">
+        <ul class="nav-list">
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Colección cápsula 2026</p>
+          <h1 id="hero-title">Prendas que te hacen <em>brillar</em>.</h1>
+          <p class="lead">Un showroom con prendas elegidas una por una. Visitanos con cita previa o consultá por WhatsApp.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#coleccion">Ver colección</a>
+            <a class="link-underline" href="#contacto">Agendar una visita</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="img/hero.webp" width="1200" height="1500" alt="Modelo con prendas de la colección cápsula de Glow Up" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <div class="strip" aria-label="Beneficios">
+      <ul class="container strip-list">
+        <li>Envíos a todo el país</li>
+        <li id="strip-installments">3 cuotas sin interés</li>
+        <li>Cambios dentro de los 30 días</li>
+      </ul>
+    </div>
+
+    <section class="section" id="coleccion" aria-labelledby="coleccion-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="coleccion-title">La colección</h2>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <p class="count" id="count" aria-live="polite"></p>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" id="chips" role="group" aria-label="Filtrar por categoría"></div>
+          <div class="sort">
+            <label for="sort">Ordenar</label>
+            <select id="sort">
+              <option value="featured">Destacados</option>
+              <option value="asc">Menor precio</option>
+              <option value="desc">Mayor precio</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="pd" id="pd" aria-labelledby="pd-name">
+    <button class="pd-close" type="button" id="pd-close" aria-label="Cerrar">&times;</button>
+    <div class="pd-scroll">
+      <div class="pd-media"><img id="pd-img" alt="" width="900" height="1125"></div>
+      <div class="pd-body">
+        <div class="pd-info">
+          <p class="cat-label" id="pd-cat"></p>
+          <h2 class="pd-name" id="pd-name"></h2>
+          <p class="price" id="pd-price"></p>
+          <p class="pd-inst" id="pd-inst"></p>
+          <p class="pd-desc" id="pd-desc"></p>
+
+          <div class="pd-group">
+            <p class="pd-label" id="pd-color-label"></p>
+            <div class="swatches-lg" id="pd-colors" role="group" aria-labelledby="pd-color-label"></div>
+          </div>
+          <div class="pd-group">
+            <p class="pd-label" id="pd-size-label">Talle</p>
+            <div class="chips chips-wrap" id="pd-sizes" role="group" aria-labelledby="pd-size-label"></div>
+          </div>
+
+          <dl class="specs" id="pd-specs"></dl>
+        </div>
+        <div class="pd-cta">
+          <a class="btn btn-primary btn-block" id="pd-wa" href="#" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.08.88.9-3-.2-.31a8.2 8.2 0 1 1 6.88 3.76Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.1-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.42h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.57c.12.16 1.75 2.67 4.24 3.75.59.25 1.05.4 1.41.52.6.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.17.2-.58.2-1.07.14-1.17-.06-.1-.23-.16-.48-.29Z"/></svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer>
+    <section class="contact" id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <h2 class="section-title" id="contacto-title">Visitá el showroom</h2>
+        <span class="rule rule-dark" aria-hidden="true"></span>
+        <div class="contact-grid">
+          <div>
+            <h3 class="contact-label">Horarios</h3>
+            <p id="c-hours"></p>
+            <p class="muted">Con cita previa</p>
+          </div>
+          <div>
+            <h3 class="contact-label">Dónde</h3>
+            <p id="c-address"></p>
+          </div>
+          <div>
+            <h3 class="contact-label">Contacto</h3>
+            <p><a class="btn btn-outline" id="c-wa" href="#" target="_blank" rel="noopener">Escribinos por WhatsApp</a></p>
+            <p><a class="ig-link" id="c-ig" href="#" target="_blank" rel="noopener"></a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="legal">
+      <div class="container">
+        <p>© 2026 Glow Up Showroom · Sitio de demostración · Fotos: Unsplash</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
