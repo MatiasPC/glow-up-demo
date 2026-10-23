@@ -128,7 +128,7 @@ button { cursor: pointer; }
 .hero h1 .word { display: inline-block; white-space: nowrap; }
 .hero h1 .ch { display: inline-block; opacity: 0; transform: translateY(40%); animation: ch-in .9s var(--ease) forwards; animation-delay: calc(.7s + var(--i, 0) * .07s); }
 .hero h1 .word:nth-child(2) .ch { font-style: italic; }
-.hero-sub { margin-top: var(--s-5); max-width: 24em; font-size: clamp(1rem, 1.6vw, 1.1875rem); font-weight: 400; letter-spacing: .01em; text-shadow: 0 1px 18px rgba(0,0,0,.4); opacity: 0; animation: fade-in 1s var(--ease) 1.6s forwards; }
+.hero-sub { text-wrap: balance; margin-top: var(--s-5); max-width: 24em; font-size: clamp(1rem, 1.6vw, 1.1875rem); font-weight: 400; letter-spacing: .01em; text-shadow: 0 1px 18px rgba(0,0,0,.4); opacity: 0; animation: fade-in 1s var(--ease) 1.6s forwards; }
 
 .hero-cue { position: absolute; z-index: 1; left: 50%; bottom: var(--s-5); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: var(--s-2); font-size: .875rem; text-decoration: none; opacity: 0; animation: fade-in 1s var(--ease) 2.1s forwards; }
 .hero-cue i { display: block; width: 1px; height: 40px; background: linear-gradient(#fff, rgba(255,255,255,0)); transform-origin: top; animation: cue 2s var(--ease) 2.4s infinite; }
