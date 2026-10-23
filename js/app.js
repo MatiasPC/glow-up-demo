@@ -83,8 +83,22 @@
     return wrap;
   }
 
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }) : null;
+
+  function observeCards() {
+    grid.querySelectorAll(".card").forEach(function (c, i) {
+      if (!io) { c.classList.add("is-visible"); return; }
+      c.style.transitionDelay = (i % 4) * 70 + "ms";
+      io.observe(c);
+    });
+  }
+
   function buildCard(p, animate) {
-    var card = el("article", "card" + (animate ? " is-in" : ""));
+    var card = el("article", "card");
 
     var frame = el("div", "frame");
     var img = el("img");
@@ -135,6 +149,7 @@
     var frag = document.createDocumentFragment();
     list.forEach(function (p) { frag.appendChild(buildCard(p, animate)); });
     grid.replaceChildren(frag);
+    observeCards();
     $("count").textContent = list.length + (list.length === 1 ? " prenda" : " prendas");
   }
 
@@ -272,6 +287,14 @@
   window.addEventListener("hashchange", function () {
     if (/^#p-/.test(location.hash)) openFromHash();
   });
+
+  /* ---------- Hero + header ---------- */
+  document.querySelectorAll(".hero h1 .ch").forEach(function (c, i) { c.style.setProperty("--i", i); });
+  var header = document.querySelector(".site-header");
+  var hero = document.querySelector(".hero");
+  function syncHeader() { header.classList.toggle("is-solid", window.scrollY > hero.offsetHeight - header.offsetHeight - 8); }
+  window.addEventListener("scroll", syncHeader, { passive: true });
+  syncHeader();
 
   /* ---------- Init ---------- */
   buildChips();
